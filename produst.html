@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products — Vathana Football Boots</title>
+    <style>
+        /* ========== RESET ========== */
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; font-size:16px; }
+        body { font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; color:#1a1a1a; background:#fff; line-height:1.6; -webkit-font-smoothing:antialiased; }
+        img { max-width:100%; display:block; }
+        a { text-decoration:none; color:inherit; }
+        ul { list-style:none; }
+
+        /* ========== NAV ========== */
+        nav { position:fixed; top:0; left:0; width:100%; z-index:999; background:#0a0a0a; border-bottom:1px solid #1f1f1f; }
+        .nav-inner { max-width:1200px; margin:0 auto; padding:0 2rem; height:64px; display:flex; align-items:center; justify-content:space-between; }
+        .nav-logo { font-size:1.125rem; font-weight:800; letter-spacing:-0.5px; color:#fff; text-transform:uppercase; }
+        .nav-logo span { color:#666; font-weight:400; }
+        .nav-links { display:flex; gap:0.25rem; }
+        .nav-links a { color:#aaa; font-size:0.875rem; font-weight:500; padding:0.5rem 1rem; border-radius:2px; letter-spacing:0.03em; transition:color 0.2s,background 0.2s; }
+        .nav-links a:hover, .nav-links a.active { color:#fff; background:rgba(255,255,255,0.07); }
+
+        /* ========== PAGE OFFSET ========== */
+        .page-top { padding-top:64px; }
+
+        /* ========== PAGE HERO ========== */
+        .page-hero {
+            background-image: url('https://vcdn1-english.vnecdn.net/2026/04/03/romembapvini-1775205179-177520-6993-5871-1775205489.jpg?w=500&h=300&q=100&dpr=2&fit=crop&s=ou19kej6KHEQVePLVyYedg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            min-height: 1000px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 5rem 2rem 3.5rem;
+        }
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: 0;
+        }
+        .page-hero__label { position:relative; z-index:1; font-size:0.75rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#aaa; margin-bottom:0.8rem; }
+        .page-hero__title { position:relative; z-index:1; font-size:clamp(2rem,5vw,3rem); font-weight:900; letter-spacing:-1.5px; text-transform:uppercase; line-height:1.05; max-width:700px; color:#fff; }
+
+        /* ========== SECTION ========== */
+        .section { max-width:1200px; margin:0 auto; padding:4rem 2rem; }
+        .section-label { font-size:0.75rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#888; margin-bottom:0.6rem; }
+        .section-title { font-size:clamp(1.6rem,4vw,2.25rem); font-weight:800; letter-spacing:-0.5px; text-transform:uppercase; margin-bottom:2.5rem; }
+        .divider { border:none; border-top:1px solid #e0e0e0; margin:0; }
+
+        /* ========== FILTER TAGS ========== */
+        .filter-bar { display:flex; gap:0.5rem; margin-bottom:2.5rem; flex-wrap:wrap; }
+        .filter-tag { display:inline-block; padding:0.45rem 1.1rem; border:1.5px solid #e0e0e0; border-radius:100px; font-size:0.75rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#666; background:#fff; }
+
+        /* ========== BRAND LABEL ========== */
+        .brand-label { display:flex; align-items:center; gap:1rem; margin-bottom:1.75rem; margin-top:3rem; }
+        .brand-label__name { font-size:0.75rem; font-weight:800; letter-spacing:0.2em; text-transform:uppercase; white-space:nowrap; }
+        .brand-label__line { flex:1; height:1px; background:#e0e0e0; }
+
+        /* ========== PRODUCTS GRID ========== */
+        .products-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.25rem; }
+
+        /* ========== PRODUCT CARD ========== */
+        .product-card { background:#fff; border:1px solid #e0e0e0; border-radius:2px; overflow:hidden; transition:border-color 0.2s,box-shadow 0.2s,transform 0.2s; }
+        .product-card:hover { border-color:#0a0a0a; box-shadow:0 4px 16px rgba(0,0,0,0.10); transform:translateY(-4px); }
+        .product-card__img { width:100%; height:200px; background:#f5f5f5; overflow:hidden; display:flex; align-items:center; justify-content:center; padding:1rem; }
+        .product-card__img img { width:100%; height:100%; object-fit:contain; transition:transform 0.35s ease; }
+        .product-card:hover .product-card__img img { transform:scale(1.08); }
+        .product-card__body { padding:1rem 1.1rem 1.3rem; }
+        .product-card__brand { font-size:0.75rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#888; margin-bottom:0.3rem; }
+        .product-card__name { font-size:0.875rem; font-weight:700; color:#1a1a1a; margin-bottom:0.5rem; line-height:1.3; }
+        .product-card__rating { display:flex; align-items:center; gap:0.35rem; margin-bottom:0.4rem; }
+        .stars { font-size:0.8rem; color:#111; letter-spacing:1px; }
+        .rating-count { font-size:0.75rem; color:#888; }
+        .product-card__color { font-size:0.75rem; color:#888; margin-bottom:0.4rem; }
+        .product-card__price { font-size:1.125rem; font-weight:800; color:#0a0a0a; }
+        .product-card__price .original { font-size:0.875rem; font-weight:400; color:#888; text-decoration:line-through; margin-left:0.4rem; }
+        .product-card__btn { display:block; width:100%; text-align:center; padding:0.65rem; margin-top:0.85rem; background:#0a0a0a; color:#fff; font-size:0.75rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; border-radius:2px; border:2px solid #0a0a0a; transition:background 0.2s,color 0.2s; }
+        .product-card__btn:hover { background:transparent; color:#0a0a0a; }
+
+        /* ========== CTA STRIP ========== */
+        .cta-strip { text-align:center; margin-top:3rem; padding-top:2rem; border-top:1px solid #e0e0e0; }
+        .cta-strip h3 { font-size:1.4rem; font-weight:800; text-transform:uppercase; margin-bottom:1.25rem; }
+        .btn-dark { display:inline-block; padding:0.75rem 1.75rem; background:#0a0a0a; color:#fff; font-size:0.875rem; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; border-radius:2px; border:2px solid #0a0a0a; transition:background 0.2s,color 0.2s; }
+        .btn-dark:hover { background:transparent; color:#0a0a0a; }
+
+        /* ========== FOOTER ========== */
+        footer { background:#0a0a0a; color:#fff; }
+        .footer-inner { max-width:1200px; margin:0 auto; padding:3rem 2rem 2rem; }
+        .footer-top { display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:3rem; padding-bottom:2.5rem; border-bottom:1px solid #1f1f1f; }
+        .footer-brand__logo { font-size:1.125rem; font-weight:900; letter-spacing:-0.5px; text-transform:uppercase; margin-bottom:0.75rem; }
+        .footer-brand__logo span { color:#666; font-weight:400; }
+        .footer-brand__desc { font-size:0.875rem; color:#777; line-height:1.65; max-width:240px; }
+        .footer-col__title { font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#666; margin-bottom:1.1rem; }
+        .footer-col__links { display:flex; flex-direction:column; gap:0.6rem; }
+        .footer-col__links a { font-size:0.875rem; color:#777; transition:color 0.2s; }
+        .footer-col__links a:hover { color:#fff; }
+        .footer-col__contact { display:flex; flex-direction:column; gap:0.55rem; }
+        .footer-col__contact p { font-size:0.875rem; color:#777; }
+        .footer-bottom { display:flex; justify-content:space-between; align-items:center; padding-top:1.5rem; gap:1rem; }
+        .footer-bottom p { font-size:0.75rem; color:#555; }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width:900px) { .products-grid { grid-template-columns:repeat(2,1fr); } .footer-top { grid-template-columns:1fr 1fr; } }
+        @media (max-width:600px) { .nav-links { display:none; } .products-grid { grid-template-columns:1fr; } .footer-top { grid-template-columns:1fr; } .footer-bottom { flex-direction:column; text-align:center; } }
+    </style>
+</head>
+<body class="page-top">
+
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">Vathana <span>Football Boots</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="products.html" class="active">Products</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ==================== PAGE HERO ==================== -->
+    <div class="page-hero">
+        <p class="page-hero__label">Nike &amp; Adidas — 2026</p>
+        <h1 class="page-hero__title">2026 Football<br>Boot Collection</h1>
+    </div>
+
+    <!-- ==================== PRODUCTS ==================== -->
+    <div class="section">
+
+        <div class="filter-bar">
+            <span class="filter-tag">All Boots</span>
+            <span class="filter-tag">Nike</span>
+            <span class="filter-tag">Adidas</span>
+            <span class="filter-tag">2026 Models</span>
+        </div>
+
+        <!-- ====== NIKE COLLECTION ====== -->
+        <div id="nike">
+            <div class="brand-label">
+                <span class="brand-label__name">Nike Collection</span>
+                <div class="brand-label__line"></div>
+            </div>
+            <div class="products-grid">
+
+                <div class="product-card">
+                    <div class="product-card__img"><img src="https://www.nike.com.kw/dw/image/v2/BDVB_PRD/on/demandware.static/-/Sites-akeneo-master-catalog/default/dw528f5dcd/nk/2ab/4/8/6/6/4/2ab48664_37fd_429c_99c7_15ecf70ea120.jpg?sw=700&sh=700&sm=fit&q=100&strip=false" alt="Nike Mercurial Superfly 9 Elite"></div>
+                    <div class="product-card__body">
+                        <p class="product-card__brand">Nike</p>
+                        <p class="product-card__name">Mercurial Superfly 9 Elite 2026</p>
+                        <div class="product-card__rating"><span class="stars">★★★★☆</span><span class="rating-count">(76)</span></div>
+                        <p class="product-card__color">White / Pink Blast / Baltic Blue</p>
+                        <div class="product-card__price">$285 <span class="original">$320</span></div>
+                        <a href="contact.html" class="product-card__btn">Order Now</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-card__img"><img src="https://www.prodirectsport.us/cdn/shop/files/1012909_main.jpg?v=1774358531" alt="Nike Phantom GX 2026"></div>
+                    <div class="product-card__body">
+                        <p class="product-card__brand">Nike</p>
+                        <p class="product-card__name">Phantom GX Club DF 2026</p>
+                        <div class="product-card__rating"><span class="stars">★★★★★</span><span class="rating-count">(91)</span></div>
+                        <p class="product-card__color">Black / Chrome / Blue</p>
+                        <div class="product-card__price">$275 <span class="original">$300</span></div>
+                        <a href="contact.html" class="product-card__btn">Order Now</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-card__img"><img src="https://www.nike.com.kw/dw/image/v2/BDVB_PRD/on/demandware.static/-/Sites-akeneo-master-catalog/default/dwc6ca23c8/nk/755/1/e/a/b/5/7551eab5_03ed_4ca5_ae31_8907f6fb6fcc.jpg" alt="Nike Tiempo Legend 10 Pro"></div>
+                    <div class="product-card__body">
+                        <p class="product-card__brand">Nike</p>
+                        <p class="product-card__name">Tiempo Legend 10 Pro 2026</p>
+                        <div class="product-card__rating"><span class="stars">★★★★★</span><span class="rating-count">(58)</span></div>
+                        <p class="product-card__color">Signal Blue / White</p>
+                        <div class="product-card__price">$260 <span class="original">$290</span></div>
+                        <a href="contact.html" class="product-card__btn">Order Now</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-card__img"><img src="https://www.nike.com.kw/dw/image/v2/BDVB_PRD/on/demandware.static/-/Sites-akeneo-master-catalog/default/dw71279083/nk/88c/3/6/b/8/b/88c36b8b_d410_4974_807b_86277e4181b4.png?sw=700&sh=700&sm=fit&q=100&strip=false" alt="Nike Air Zoom Mercurial Vapor 16 Elite"></div>
+                    <div class="product-card__body">
+                        <p class="product-card__brand">Nike</p>
+                        <p class="product-card__name">Air Zoom Mercurial Vapor 16 Elite</p>
+                        <div class="product-card__rating"><span class="stars">★★★★★</span><span class="rating-count">(128)</span></div>
+                        <p class="product-card__color">Racer Blue / White / Hot Pink</p>
+                        <div class="product-card__price">$295 <span class="original">$340</span></div>
+                        <a href="contact.html" class="product-card__btn">Order Now</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-card__img"><img src="https://soccerpost.com/cdn/shop/files/AURORA_FQ1457-600_PHSRH000-2000_clipped_rev_1.png?v=1752268806" alt="Nike Mercurial Vapor 16 Pink"></div>
+                    <div class="product-card__body">
+                        <p class="product-card__brand">Nike</p>
+                        <p class="product-card__name">Mercurial Vapor 16 2026</p>
+                        <div class="product-card__rating"><span class="stars">★★★★☆</span><span class="rating-count">(63)</span></div>
+                        <p class="product-card__color">Pink / Blue</p>
+                        <div class="product-card__price">$270 <span class="original">$310</span></div>
+                        <a href="contact.html" class="product-card__btn">Order Now</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-card__img"><img src="https://aztecasoccer.com/cdn/shop/files/nike-mens-tiempo-legend-10-elite-fg-blueeclipse-black.png?v=1756808368" alt="Nike Tiempo Legend 10 Elite FG"></div>
+                    <div class="product-card__body">
+                        <p class="product-card__brand">Nike</p>
+                        <p class="product-card__name">Tiempo Legend 10 Elite FG 2026</p>
+                        <div class="product-card__rating"><span class="stars">★★★★★</span><span class="rating-count">(49)</span></div>
+                        <p class="product-card__color">Teal / Pink</p>
+                        <div class="product-card__price">$265 <span class="original">$295</span></div>
+                        <a href="contact.html" class="product-card__btn">Order Now</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ====== ADIDAS COLLECTION ====== -->
+        <div id="adidas">
+            <div class="brand-label">
+                <span class="brand-label__name">Adidas Collection</span>
+                <div class="brand-label__line"></div>
+            </div>
+            <div class="products-grid">
+
+                <div class="product-card">
+                    <div class="product-card__img"><img src="https://soccerpost.com/cdn/shop/files/JH7615_b2b012_plp_clipped_rev_1.png?v=1751895851" alt="Adidas F50 Elite 2026"></div>
+                    <div class="product-card__body">
+                        <p class="product-card__brand">Adidas</p>
+                        <p class="product-card__name">F50 Elite 2026</p>
+                        <div class="product-card__rating"><span class="stars">★★★★★</span><span class="rating-count">(94)</span></div>
+                        <p class="product-card__color">Core Black / Cloud White / Solar Blue</p>
+                        <div class="product-card__price">$290 <span class="original">$330</span></div>
+                        <a href="contact.html" class="product-card__btn">Order Now</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-card__img"><img src="https://smithssportsshoes.co.nz/cdn/shop/files/JR7853_1_FOOTWEAR_Photography_Side-Lateral-Center-View_transparent.png?v=1768785034" alt="Adidas Predator Elite 2026"></div>
+                    <div class="product-card__body">
+                        <p class="product-card__brand">Adidas</p>
+                        <p class="product-card__name">Predator Elite 2026</p>
+                        <div class="product-card__rating"><span class="stars">★★★★★</span><span class="rating-count">(112)</span></div>
+                        <p class="product-card__color">Black / Red</p>
+                        <div class="product-card__price">$250 <span class="original">$280</span></div>
+                        <a href="contact.html" class="product-card__btn">Order Now</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-card__img"><img src="https://soccerworld.com.au/cdn/shop/files/IE7487_1_FOOTWEAR_Photography_SideLateralCenterView_transparent.png?v=1735969274&width=1946" alt="Adidas Copa Pure 2 Elite SG"></div>
+                    <div class="product-card__body">
+                        <p class="product-card__brand">Adidas</p>
+                        <p class="product-card__name">Copa Pure 2 Elite SG 2026</p>
+                        <div class="product-card__rating"><span class="stars">★★★★☆</span><span class="rating-count">(67)</span></div>
+                        <p class="product-card__color">Ivory / Core Black / Solar Red</p>
+                        <div class="product-card__price">$280 <span class="original">$320</span></div>
+                        <a href="contact.html" class="product-card__btn">Order Now</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-card__img"><img src="https://soccerpost.com/cdn/shop/files/IG0765_b2b010_plp_clipped_rev_1.png?v=1691601367" alt="Adidas X Crazyfast 2026"></div>
+                    <div class="product-card__body">
+                        <p class="product-card__brand">Adidas</p>
+                        <p class="product-card__name">X Crazyfast.4 Ground 2026</p>
+                        <div class="product-card__rating"><span class="stars">★★★★★</span><span class="rating-count">(83)</span></div>
+                        <p class="product-card__color">White / Solar Green</p>
+                        <div class="product-card__price">$240 <span class="original">$270</span></div>
+                        <a href="contact.html" class="product-card__btn">Order Now</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="cta-strip">
+            <p class="section-label" style="margin-bottom:0.5rem;">Want To Order?</p>
+            <h3>Contact Us To Place Your Order</h3>
+            <a href="contact.html" class="btn-dark">Go To Contact</a>
+        </div>
+
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-brand__logo">Vathana <span>Football Boots</span></div>
+                    <p class="footer-brand__desc">Cambodia's home for authentic 2026 Nike and Adidas football boots.</p>
+                </div>
+                <div>
+                    <p class="footer-col__title">Navigate</p>
+                    <div class="footer-col__links">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About</a>
+                        <a href="products.html">Products</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+                <div>
+                    <p class="footer-col__title">Contact</p>
+                    <div class="footer-col__contact">
+                        <p>+855 96 395 3596</p>
+                        <p>khoeurnvathana21@gmail.com</p>
+                        <p>Phnom Penh, Cambodia</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Vathana Football Boots. All Rights Reserved.</p>
+                <p>Designed by Khoeurn Vathan &mdash; ITE, RUPP</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
